@@ -1,0 +1,2 @@
+# Redis
+alias restart_redis='sudo service redis-server restart'

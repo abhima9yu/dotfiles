@@ -1,0 +1,11 @@
+# General code - From Chris Wanstrath
+function pless() {
+    pygmentize $1 | less -r
+}
+
+# Text editing - Emacs
+# Regenerate TAGS file from file arguments
+function ct() {
+  rm -f TAGS
+  etags --append --output=TAGS $*
+}

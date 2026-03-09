@@ -1,0 +1,6 @@
+function aiff2mp3() {
+  lame -h -V 0 $1.aif $1.mp3
+}
+function wav2mp3() {
+  lame -h -V 0 $1.wav $1.mp3
+}

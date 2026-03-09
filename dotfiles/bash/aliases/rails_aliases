@@ -1,0 +1,5 @@
+# Rails
+alias ras='rails s'
+alias rac='rails c'
+alias tl='tail -f log/*.log'
+alias bins='bundle install'

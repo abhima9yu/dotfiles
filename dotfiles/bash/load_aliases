@@ -1,0 +1,14 @@
+# Load all alias files from the aliases directory (and one level of subdirs, e.g. mindbody/)
+_aliases_dir=~/bin/dotfiles/bash/aliases
+if [[ -d "$_aliases_dir" ]]; then
+  for _f in "$_aliases_dir"/*; do
+    [[ -f "$_f" ]] && source "$_f"
+  done
+  for _sub in "$_aliases_dir"/*/; do
+    [[ -d "$_sub" ]] || continue
+    for _f in "$_sub"*; do
+      [[ -f "$_f" ]] && source "$_f"
+    done
+  done
+fi
+unset _aliases_dir _sub _f

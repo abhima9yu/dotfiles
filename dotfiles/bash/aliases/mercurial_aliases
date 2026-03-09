@@ -1,0 +1,5 @@
+# Mercurial hg
+function new-hg() {
+    ssh hg@example.com "hg init $1"
+    hg clone ssh://hg@example.com/$1
+}

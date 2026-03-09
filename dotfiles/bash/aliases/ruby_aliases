@@ -1,0 +1,6 @@
+# Ruby
+alias r="rake"
+
+function markdown() {
+/Applications/TextMate.app/Contents/SharedSupport/Support/bin/Markdown.pl $1 > $1.html
+}
