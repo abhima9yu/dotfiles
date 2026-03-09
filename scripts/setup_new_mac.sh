@@ -56,16 +56,4 @@ else
   echo "Done."
 fi
 echo ""
-
-# Optional: link gitup to ~/bin
-mkdir -p ~/bin
-if [[ ! -x ~/bin/gitup ]]; then
-  ln -sf "$DOTFILES_ROOT/gitup" ~/bin/gitup
-  chmod +x ~/bin/gitup
-  echo ">>> Linked gitup to ~/bin/gitup"
-else
-  echo ">>> ~/bin/gitup already present"
-fi
-
-echo ""
 echo "Setup complete. Restart your terminal or run: source ~/.zshrc"

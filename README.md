@@ -20,7 +20,7 @@ Install tools used by these dotfiles and scripts:
 # MacVim (for EDITOR and aliases: ea, ee)
 brew install macvim
 
-# Ruby (for gitup script; macOS includes one, or use brew for a specific version)
+# Ruby (macOS includes one, or use brew for a specific version)
 brew install ruby
 ```
 
@@ -41,45 +41,13 @@ brew install ruby
    echo '[[ -f ~/dotfiles/bashrc ]] && . ~/dotfiles/bashrc' >> ~/.bash_profile
    ```
 
-3. **Optional: install `gitup`** (pull multiple git repos at once):
-
-   ```bash
-   mkdir -p ~/bin
-   ln -sf ~/dotfiles/gitup ~/bin/gitup
-   chmod +x ~/bin/gitup
-   ```
-
-   `~/bin` is already added to `PATH` in `dotfiles/bash/env`.
-
-4. **Load the config** in the current shell:
+3. **Load the config** in the current shell:
 
    ```bash
    source ~/dotfiles/bashrc
    ```
 
    Or open a new terminal.
-
-## Scripts (root)
-
-| Script   | Purpose                         | Run command |
-|----------|---------------------------------|-------------|
-| `gitup`  | Pull remote changes for many git dirs | `gitup repos/*` or `gitup .` (from a parent dir) |
-
-**Examples:**
-
-```bash
-# Update all repos in the current directory
-gitup .
-
-# Update repos in a specific directory
-gitup ~/Documents/Projects/*
-
-# Recurse into subdirectories
-gitup -r .
-
-# Verbose output
-gitup -v .
-```
 
 ## Scripts (`scripts/`)
 
@@ -91,7 +59,7 @@ All scripts assume **macOS** and **Homebrew**. Run from the dotfiles repo root. 
 ./scripts/setup_new_mac.sh
 ```
 
-This installs Homebrew, Git, Ruby, rbenv, Rails, Docker, AWS CLI, Heroku CLI, Oh My Zsh, and VS Code, then adds your dotfiles `bashrc` to `~/.zshrc` and links `gitup` to `~/bin`. If an install step fails, the script continues with the rest.
+This installs Homebrew, Git, Ruby, rbenv, Rails, Docker, AWS CLI, Heroku CLI, Oh My Zsh, and VS Code, then adds your dotfiles `bashrc` to `~/.zshrc`. If an install step fails, the script continues with the rest.
 
 ### Individual scripts
 
