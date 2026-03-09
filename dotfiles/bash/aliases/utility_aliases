@@ -1,8 +1,8 @@
 # Utility
-alias reload='source ~/bin/dotfiles/bash/load_aliases'
-alias ea="mvim ~/bin/dotfiles/bash/aliases"
-alias ee="mvim ~/bin/dotfiles/bash/env"
-alias cdbash='cd ~/bin/dotfiles/bash'
+alias reload='source "$DOTFILES_ROOT/dotfiles/bash/load_aliases"'
+alias ea='mvim "$DOTFILES_ROOT/dotfiles/bash/aliases"'
+alias ee='mvim "$DOTFILES_ROOT/dotfiles/bash/env"'
+alias cdbash='cd "$DOTFILES_ROOT/dotfiles/bash"'
 alias cdwf='cd ~/Documents/Projects/wish_cloud_front_end'
 alias cdwb='cd ~/Documents/Projects/wish_cloud_back_end'
 alias cdwc='cd ~/Documents/Projects/crawlers'
