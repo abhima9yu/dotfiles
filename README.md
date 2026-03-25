@@ -5,12 +5,7 @@ Bash config, aliases, and scripts. Set up for **macOS** with **Homebrew**.
 ## Prerequisites
 
 - macOS
-- [Homebrew](https://brew.sh/)
-
-```bash
-# Install Homebrew (if needed)
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-```
+- **[Homebrew](https://brew.sh/)** — scripts here install it for you **without `sudo`**, under **`$HOME/homebrew`** by default (same approach as [untar anywhere](https://docs.brew.sh/Installation#untar-anywhere-unsupported)). To use Apple’s installer instead (may prompt for a password), see the Homebrew site.
 
 ## Dependencies (Homebrew)
 
@@ -26,7 +21,7 @@ brew install ruby
 
 ## Remote bootstrap (fresh Mac)
 
-On a new machine you only need **macOS**, **bash**, and **curl** (no Git or Homebrew required first). [scripts/bootstrap.sh](scripts/bootstrap.sh) installs Homebrew, Ruby, and Git via Homebrew, clones or unpacks your dotfiles, then runs [scripts/setup_new_mac.sh](scripts/setup_new_mac.sh).
+On a new machine you only need **macOS**, **bash**, and **curl** (no Git or Homebrew required first). [scripts/bootstrap.sh](scripts/bootstrap.sh) installs Homebrew into **`$HOME/homebrew`** without **`sudo`**, then installs Ruby and Git via Homebrew, clones or unpacks your dotfiles, and runs [scripts/setup_new_mac.sh](scripts/setup_new_mac.sh).
 
 **One-liner** (change repo name or branch in both URLs if yours is not `dotfiles` / `master`):
 
@@ -58,6 +53,7 @@ env DOTFILES_GIT_URL=https://github.com/abhima9yu/dotfiles.git bash /tmp/bootstr
 
 | Variable | Default | Description |
 |----------|---------|-------------|
+| `HOMEBREW_PREFIX` | `$HOME/homebrew` | Where Homebrew is installed when `brew` is not already on `PATH` (user-owned; no `sudo`) |
 | `DOTFILES_DIR` | `$HOME/dotfiles` | Where the repo is cloned or extracted |
 | `DOTFILES_GIT_URL` | *(none)* | Git clone URL (required unless dotfiles already exist there or you use `DOTFILES_ZIP_URL`) |
 | `DOTFILES_BRANCH` | `master` | Branch passed to `git clone` |

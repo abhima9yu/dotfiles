@@ -20,11 +20,14 @@ echo "---"
 # 1. Homebrew (required for most other installs)
 echo ">>> Install Homebrew"
 ruby "$DOTFILES_ROOT/scripts/install_brew.rb"
-# Ensure brew is on PATH for this script (e.g. Apple Silicon post-install)
+# Ensure brew is on PATH for this script (standard paths or user prefix, no sudo)
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-"$HOME/homebrew"}"
 if [[ -x /opt/homebrew/bin/brew ]]; then
   eval "$(/opt/homebrew/bin/brew shellenv)"
 elif [[ -x /usr/local/bin/brew ]]; then
   eval "$(/usr/local/bin/brew shellenv)"
+elif [[ -x "$HOMEBREW_PREFIX/bin/brew" ]]; then
+  eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
 fi
 echo ""
 

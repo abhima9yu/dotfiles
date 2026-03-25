@@ -13,21 +13,30 @@ fi
 
 DOTFILES_DIR="${DOTFILES_DIR:-"$HOME/dotfiles"}"
 DOTFILES_BRANCH="${DOTFILES_BRANCH:-master}"
+HOMEBREW_PREFIX="${HOMEBREW_PREFIX:-"$HOME/homebrew"}"
 
 brew_shellenv() {
   if [[ -x /opt/homebrew/bin/brew ]]; then
     eval "$(/opt/homebrew/bin/brew shellenv)"
   elif [[ -x /usr/local/bin/brew ]]; then
     eval "$(/usr/local/bin/brew shellenv)"
+  elif [[ -x "$HOMEBREW_PREFIX/bin/brew" ]]; then
+    eval "$("$HOMEBREW_PREFIX/bin/brew" shellenv)"
   else
     echo "Homebrew not found and install did not place brew in a standard path." >&2
     exit 1
   fi
 }
 
-if ! command -v brew >/dev/null 2>&1; then
-  echo ">>> Installing Homebrew (interactive prompts possible)..."
-  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if command -v brew >/dev/null 2>&1; then
+  :
+elif [[ -x "$HOMEBREW_PREFIX/bin/brew" ]]; then
+  :
+else
+  echo ">>> Installing Homebrew to $HOMEBREW_PREFIX (no sudo)..."
+  mkdir -p "$HOMEBREW_PREFIX"
+  curl -fsSL https://github.com/Homebrew/brew/tarball/main | tar xz --strip-components 1 -C "$HOMEBREW_PREFIX"
+  "$HOMEBREW_PREFIX/bin/brew" update
 fi
 
 brew_shellenv
