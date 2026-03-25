@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Bootstrap a fresh Mac: install Homebrew (bash only), then ruby+git, fetch dotfiles, run setup_new_mac.sh.
 # Typical (use env + bash -s so zsh pipelines work):
-#   curl -fsSL https://raw.githubusercontent.com/USER/dotfiles/main/scripts/bootstrap.sh | env DOTFILES_GIT_URL=https://github.com/USER/dotfiles.git bash -s
+#   curl -fsSL https://raw.githubusercontent.com/abhima9yu/dotfiles/master/scripts/bootstrap.sh | env DOTFILES_GIT_URL=https://github.com/abhima9yu/dotfiles.git bash -s
 # Set DOTFILES_GIT_URL (or DOTFILES_ZIP_URL) when piping so clone/unzip knows where to fetch.
 
 set -euo pipefail
@@ -12,7 +12,7 @@ if [[ "$(uname -s)" != "Darwin" ]]; then
 fi
 
 DOTFILES_DIR="${DOTFILES_DIR:-"$HOME/dotfiles"}"
-DOTFILES_BRANCH="${DOTFILES_BRANCH:-main}"
+DOTFILES_BRANCH="${DOTFILES_BRANCH:-master}"
 
 brew_shellenv() {
   if [[ -x /opt/homebrew/bin/brew ]]; then

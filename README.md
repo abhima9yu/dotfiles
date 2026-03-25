@@ -28,30 +28,30 @@ brew install ruby
 
 On a new machine you only need **macOS**, **bash**, and **curl** (no Git or Homebrew required first). [scripts/bootstrap.sh](scripts/bootstrap.sh) installs Homebrew, Ruby, and Git via Homebrew, clones or unpacks your dotfiles, then runs [scripts/setup_new_mac.sh](scripts/setup_new_mac.sh).
 
-**One-liner** (replace `YOUR_USER`, repo name, and branch in both URLs if yours is not `main`):
+**One-liner** (change repo name or branch in both URLs if yours is not `dotfiles` / `master`):
 
 Use `env … bash -s` so **zsh** and **bash** both pass the variable into the shell that reads the script from the pipe (`-s` means read stdin).
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh | env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash -s
+curl -fsSL https://raw.githubusercontent.com/abhima9yu/dotfiles/master/scripts/bootstrap.sh | env DOTFILES_GIT_URL=https://github.com/abhima9yu/dotfiles.git bash -s
 ```
 
 Multiline (no spaces after `\`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh | \
-  env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash -s
+curl -fsSL https://raw.githubusercontent.com/abhima9yu/dotfiles/master/scripts/bootstrap.sh | \
+  env DOTFILES_GIT_URL=https://github.com/abhima9yu/dotfiles.git bash -s
 ```
 
-**If this fails:** `404` usually means the GitHub path is wrong (replace every `YOUR_USER`, repo name, or branch), or your default branch is `master` not `main`. Test with `curl -I` on the raw URL first.
+**If this fails:** `404` usually means the GitHub path is wrong (username, repo name, or branch). This repo uses **`master`** as the default branch. Test with `curl -I` on the raw URL first.
 
 **Safer:** download, inspect, then run:
 
 ```bash
 curl -fsSL -o /tmp/bootstrap.sh \
-  https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh
+  https://raw.githubusercontent.com/abhima9yu/dotfiles/master/scripts/bootstrap.sh
 # review /tmp/bootstrap.sh, then:
-env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash /tmp/bootstrap.sh
+env DOTFILES_GIT_URL=https://github.com/abhima9yu/dotfiles.git bash /tmp/bootstrap.sh
 ```
 
 **Environment variables**
@@ -60,7 +60,7 @@ env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash /tmp/bootstr
 |----------|---------|-------------|
 | `DOTFILES_DIR` | `$HOME/dotfiles` | Where the repo is cloned or extracted |
 | `DOTFILES_GIT_URL` | *(none)* | Git clone URL (required unless dotfiles already exist there or you use `DOTFILES_ZIP_URL`) |
-| `DOTFILES_BRANCH` | `main` | Branch passed to `git clone` |
+| `DOTFILES_BRANCH` | `master` | Branch passed to `git clone` |
 | `DOTFILES_ZIP_URL` | *(none)* | Optional GitHub archive URL; if set, used instead of `git clone` |
 | `GIT_PULL` | *(unset)* | If `1` and `$DOTFILES_DIR/bashrc` already exists and `.git` is present, runs `git pull` before setup |
 
