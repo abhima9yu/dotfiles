@@ -1,6 +1,8 @@
 # Resolve dotfiles root (directory containing this file)
 if [ -n "${BASH_SOURCE[0]}" ]; then
   export DOTFILES_ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+elif [ -n "${ZSH_VERSION}" ]; then
+  export DOTFILES_ROOT="$(cd "$(dirname "${(%):-%x}")" && pwd)"
 else
   export DOTFILES_ROOT="${DOTFILES_ROOT:-$HOME/dotfiles}"
 fi

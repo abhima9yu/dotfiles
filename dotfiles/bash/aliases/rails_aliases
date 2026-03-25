@@ -1,4 +1,5 @@
 # Rails
-alias ras='bundle exec rails s'
-alias rac='bundle exec rails c'
+alias rs='bundle exec rails s'
+alias rc='bundle exec rails c'
+alias rcred='EDITOR="cursor --wait" bundle exec rails credentials:edit'
 alias tl='tail -f log/*.log'

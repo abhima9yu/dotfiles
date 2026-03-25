@@ -24,6 +24,38 @@ brew install macvim
 brew install ruby
 ```
 
+## Remote bootstrap (fresh Mac)
+
+On a new machine you only need **macOS**, **bash**, and **curl** (no Git or Homebrew required first). [scripts/bootstrap.sh](scripts/bootstrap.sh) installs Homebrew, Ruby, and Git via Homebrew, clones or unpacks your dotfiles, then runs [scripts/setup_new_mac.sh](scripts/setup_new_mac.sh).
+
+**One-liner** (replace `YOUR_USER`, repo name, and branch `main` if yours differs):
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh | \
+  DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash
+```
+
+**Safer:** download, inspect, then run:
+
+```bash
+curl -fsSL -o /tmp/bootstrap.sh \
+  https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh
+# review /tmp/bootstrap.sh, then:
+DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash /tmp/bootstrap.sh
+```
+
+**Environment variables**
+
+| Variable | Default | Description |
+|----------|---------|-------------|
+| `DOTFILES_DIR` | `$HOME/dotfiles` | Where the repo is cloned or extracted |
+| `DOTFILES_GIT_URL` | *(none)* | Git clone URL (required unless dotfiles already exist there or you use `DOTFILES_ZIP_URL`) |
+| `DOTFILES_BRANCH` | `main` | Branch passed to `git clone` |
+| `DOTFILES_ZIP_URL` | *(none)* | Optional GitHub archive URL; if set, used instead of `git clone` |
+| `GIT_PULL` | *(unset)* | If `1` and `$DOTFILES_DIR/bashrc` already exists and `.git` is present, runs `git pull` before setup |
+
+**Security:** piping `curl` into `bash` trusts GitHub (or whatever host) and TLS; use the download-then-read flow if you need stronger assurance.
+
 ## Setup
 
 1. **Clone this repo** (if you haven’t already):
@@ -65,6 +97,7 @@ This installs Homebrew, Git, Ruby, rbenv, Rails, Docker, AWS CLI, Heroku CLI, Oh
 
 | Script | Purpose | Run command |
 |--------|---------|-------------|
+| `bootstrap.sh` | Fresh Mac: Homebrew, ruby+git, fetch repo, run `setup_new_mac.sh` | See **Remote bootstrap** above or `./scripts/bootstrap.sh` with env vars set |
 | `setup_new_mac.sh` | Run all installs and add bashrc to ~/.zshrc | `./scripts/setup_new_mac.sh` |
 | `generate_sshkey.rb` | Generate SSH key pair (ed25519 or RSA) | `ruby scripts/generate_sshkey.rb` |
 | `install_brew.rb` | Install Homebrew | `ruby scripts/install_brew.rb` |
