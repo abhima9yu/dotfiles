@@ -28,12 +28,22 @@ brew install ruby
 
 On a new machine you only need **macOS**, **bash**, and **curl** (no Git or Homebrew required first). [scripts/bootstrap.sh](scripts/bootstrap.sh) installs Homebrew, Ruby, and Git via Homebrew, clones or unpacks your dotfiles, then runs [scripts/setup_new_mac.sh](scripts/setup_new_mac.sh).
 
-**One-liner** (replace `YOUR_USER`, repo name, and branch `main` if yours differs):
+**One-liner** (replace `YOUR_USER`, repo name, and branch in both URLs if yours is not `main`):
+
+Use `env … bash -s` so **zsh** and **bash** both pass the variable into the shell that reads the script from the pipe (`-s` means read stdin).
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh | env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash -s
+```
+
+Multiline (no spaces after `\`):
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh | \
-  DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash
+  env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash -s
 ```
+
+**If this fails:** `404` usually means the GitHub path is wrong (replace every `YOUR_USER`, repo name, or branch), or your default branch is `master` not `main`. Test with `curl -I` on the raw URL first.
 
 **Safer:** download, inspect, then run:
 
@@ -41,7 +51,7 @@ curl -fsSL https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/boo
 curl -fsSL -o /tmp/bootstrap.sh \
   https://raw.githubusercontent.com/YOUR_USER/dotfiles/main/scripts/bootstrap.sh
 # review /tmp/bootstrap.sh, then:
-DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash /tmp/bootstrap.sh
+env DOTFILES_GIT_URL=https://github.com/YOUR_USER/dotfiles.git bash /tmp/bootstrap.sh
 ```
 
 **Environment variables**
