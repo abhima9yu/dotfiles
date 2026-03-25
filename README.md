@@ -71,7 +71,7 @@ env DOTFILES_GIT_URL=https://github.com/abhima9yu/dotfiles.git bash /tmp/bootstr
 1. **Clone this repo** (if you haven’t already):
 
    ```bash
-   git clone <your-repo-url> ~/dotfiles
+   git clone https://github.com/abhima9yu/dotfiles.git ~/dotfiles
    cd ~/dotfiles
    ```
 
