@@ -9,3 +9,4 @@ fi
 . "$DOTFILES_ROOT/dotfiles/bash/env"
 . "$DOTFILES_ROOT/dotfiles/bash/config"
 . "$DOTFILES_ROOT/dotfiles/bash/load_aliases"
+for _f in "$DOTFILES_ROOT"/dotfiles/bash/env-secrets/*(N); do [ -f "$_f" ] && . "$_f"; done; unset _f
